@@ -581,12 +581,21 @@
     <div class="container">
         <div class="row gy-5">
             <div class="col-lg-4"><a href="#"><img src="assets/images/CL_logo.png" alt="Campus.Life Logo" style="height:50px; margin-bottom: 1rem;"></a><p class="pe-lg-4">The future of student success is organized, connected, and right at your fingertips.</p>
-                        <div class="social-icons d-flex gap-3"><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> <a href=""><i class="fab fa-facebook"></i></a></div>
-</div>
+                <div class="social-icons d-flex gap-3"><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+            </div>
             <div class="col-lg-2 col-6"><h5 class="mb-3">Product</h5><ul class="list-unstyled footer-links"><li><a href="#features">Features</a></li><li><a href="#">Security</a></li><li><a href="#">For Universities</a></li></ul></div>
             <div class="col-lg-2 col-6"><h5 class="mb-3">Company</h5><ul class="list-unstyled footer-links"><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
-            <div class="col-lg-4"><h5 class="mb-3">Get tips and updates</h5><form><div class="input-group"><input type="email" class="form-control form-control-light" placeholder="Enter your email"><button class="btn btn-primary" type="button">Subscribe</button></div></form></div>
+<div class="col-lg-4">
+    <h5 class="mb-3">Get tips and updates</h5>
+    <form>
+        <div class="input-group">
+            <input type="email" id="emailInput" class="form-control form-control-light" placeholder="Enter your email">
+            
+            <button class="btn btn-primary" type="button" id="subscribeBtn">Subscribe</button>
         </div>
+    </form>
+    <p id="message" class="mt-2"></p> 
+</div>        </div>
         <div class=" mt-5 pt-4 border-top footer-bottom">
             <p class="">© 2025 Campus.Life. All rights reserved.</p>
         </div>
@@ -710,7 +719,30 @@ if (featuresContainer) { // Check if the container exists on the page
 // --- END OF 'SEE MORE' LOGIC ---
 </script>
 
+<script>
+    const subscribeButton = document.getElementById('subscribeBtn');
+    const emailInput = document.getElementById('emailInput');
+    const messageElement = document.getElementById('message');
 
+    subscribeButton.addEventListener('click', function() {
+        const email = emailInput.value;
+
+        if (email === '') {
+            messageElement.textContent = 'Please enter your email address.';
+            messageElement.style.color = 'red'; 
+        } 
+        else if (!email.includes('@gmail.com')) {
+            messageElement.textContent = 'Please enter a valid email address.';
+            messageElement.style.color = 'red';
+        }
+        else {
+            messageElement.textContent = 'Thank you for subscribing, ' + email + '!';
+            messageElement.style.color = 'green';
+
+            console.log('Subscribing email:', email);
+        }
+    });
+</script>
 
 </body>
 </html>
